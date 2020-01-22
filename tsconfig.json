@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./src/app.ts",
+    "../../.WebStorm2019.3/config/javascript/nodejs/12.13.1/node-typings/node_modules/@types/node/globals.d.ts"
+  ]
+}
