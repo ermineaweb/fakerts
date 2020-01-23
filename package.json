@@ -1,7 +1,7 @@
 {
   "name": "fakerjs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A faker data generator like the fzaninotto Php faker",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,8 +10,12 @@
     "dev": "node ./dist/app.js",
     "watch": "webpack --watch & nodemon ./dist/app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "faker",
+    "data",
+    "fixtures"
+  ],
+  "author": "Romain Amichaud",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^13.1.8",
