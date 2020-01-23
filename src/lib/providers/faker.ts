@@ -3,26 +3,38 @@ import Randomizer from "../randomizer";
 
 export default class Faker {
 
-    protected firstnamesMale = [
-        "John"
+    protected firstNamesMale = [
+        "John", "Joe"
     ];
-    protected firstnamesFemale = [
-        "Jane"
+
+    protected firstNamesFemale = [
+        "Jane", "Jessie"
     ];
 
     constructor() {
     }
 
-    firstName(gender: string): string {
-        return this.firstNameMale();
+    public firstName(gender: string = ""): string {
+        switch (gender.toLowerCase()) {
+            case "male":
+            case "m":
+                return this.firstNameMale();
+
+            case "female":
+            case "f":
+                return this.firstNameFemale();
+
+            default:
+                return Randomizer.randomize([...this.firstNamesMale, ...this.firstNamesFemale]);
+        }
     }
 
-    firstNameMale(): string {
-        return this.firstnamesMale[0];
+    public firstNameMale(): string {
+        return Randomizer.randomize(this.firstNamesMale);
     }
 
-    firstNameFemale(): string {
-        return this.firstnamesFemale[0];
+    public firstNameFemale(): string {
+        return Randomizer.randomize(this.firstNamesFemale);
     }
 
 }
