@@ -17,14 +17,14 @@ export default class Randomizer {
     }
 
     /**
-     * randomize(list)
+     * randomize(array)
      *
-     * return a random element included in list
+     * return a random element of array
      *
-     * @param tab
+     * @param array
      */
-    public static randomize(tab: Array<any>): any {
-        return tab[this.randNumber(tab.length)];
+    public static randomize(array: Array<any>): any {
+        return array[this.randNumber(array.length)];
     }
 
 }

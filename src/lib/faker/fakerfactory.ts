@@ -1,4 +1,3 @@
-import IFaker from "./ifaker";
 import locales from "./locales";
 import Faker from "../providers";
 import Faker_fr_FR from "../providers/fr_FR";
@@ -8,11 +7,11 @@ export default class FakerFactory {
 
     private static instance;
 
-    // we dont want to do 'new FakerFactory'
+    // we dont want to let developers create a 'new FakerFactory'
     private constructor() {
     }
 
-    static create(locale = "default") {
+    static create(locale: string = "") {
 
         switch (locale) {
             case locales.fr_FR:

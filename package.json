@@ -4,7 +4,7 @@
   "description": "A faker data generator like the fzaninotto Php faker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start": "npm run build && npm run dev",
     "build": "webpack",
     "dev": "node ./dist/app.js",
@@ -18,9 +18,11 @@
   "author": "Romain Amichaud",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^24.9.0",
     "@types/node": "^13.1.8",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
+    "ts-jest": "^25.0.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
