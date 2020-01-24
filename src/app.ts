@@ -1,22 +1,18 @@
-import Faker from "./lib/faker";
-import providers from "./lib/faker/providers";
+import Faker from "./lib/fakerFact";
+import providers from "./lib/fakerFact/provider";
 import Gender from "./lib/providers/gender";
 
-const faker = Faker.create(providers.fr_FR);
+const faker = Faker.create();
 const tab = [];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
     tab.push(
         {
-            firstname: faker.firstName(),
-            lastname: faker.lastName(),
+            person: faker.firstName() + " " + faker.lastName(),
             username: faker.username(),
             email: faker.email(),
-            street: faker.street(),
-            zipcode: faker.zipcode(),
-            region: faker.state(),
+            address: faker.street() + " - " + faker.zipcode() + " " + faker.city(),
             job: faker.job(),
-            date: faker.month() + ", " + faker.day(),
         }
     );
 }
