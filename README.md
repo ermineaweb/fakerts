@@ -1,8 +1,8 @@
 ## Fake Data Generator
 
-Get some fake and anonymous datas.
+Get some fake and anonymous datas, inspired by [fzaninotto/Faker](https://github.com/fzaninotto/Faker)
 
-Created to learn TypeScript, inspired by [fzaninotto/Faker](https://github.com/fzaninotto/Faker)
+Created to learn TypeScript, Webpack, Jest, Nodemon.
 
 
 ### Index
@@ -11,7 +11,7 @@ Created to learn TypeScript, inspired by [fzaninotto/Faker](https://github.com/f
 - [Methods](#Methods)
 
 -----------------------------------------------------------------
-### Usage
+### Install
 [Index](#Index)
 
 ``` 
@@ -48,22 +48,21 @@ fakerFr.street(); // place Clémence Rousset
 fakerFr.job(); // Elagueur-grimpeur
 ```
 
-Example : 5 random persons
+Example : create five persons
 
 ```javascript
 const faker = Faker.create(Provider.fr_FR);
-const tab = [];
+const persons = [];
 
 for (let i = 0; i < 5; i++) {
-    tab.push({
+    persons.push({
         person: faker.firstName() + " " + faker.lastName(),
         username: faker.username(),
         email: faker.email(),
         address: faker.street() + " - " + faker.zipcode() + " " + faker.city(),
-        job: faker.job(),
     });
 }
-console.table(tab);
+console.table(persons);
 ```
 
 ![screen](/exemple1.png)
