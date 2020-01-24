@@ -1,4 +1,4 @@
-import Provider from "./providers";
+import Provider from "./provider";
 import Faker from "../providers";
 import Faker_fr_FR from "../providers/fr_FR";
 import Faker_bzh_FR from "../providers/bzh_FR";

@@ -1,7 +1,7 @@
 {
-  "name": "fakerjs",
+  "name": "ermineafaker",
   "version": "1.0.0",
-  "description": "A faker data generator like the fzaninotto Php faker",
+  "description": "A typescript fake data generator",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
