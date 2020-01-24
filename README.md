@@ -48,7 +48,23 @@ fakerFr.street(); // place Clémence Rousset
 fakerFr.job(); // Elagueur-grimpeur
 ```
 
-Example
+Example : 5 random persons
+
+```javascript
+const faker = Faker.create(Provider.fr_FR);
+const tab = [];
+
+for (let i = 0; i < 5; i++) {
+    tab.push({
+        person: faker.firstName() + " " + faker.lastName(),
+        username: faker.username(),
+        email: faker.email(),
+        address: faker.street() + " - " + faker.zipcode() + " " + faker.city(),
+        job: faker.job(),
+    });
+}
+console.table(tab);
+```
 
 ![screen](/exemple1.png)
 
