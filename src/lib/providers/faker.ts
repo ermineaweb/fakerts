@@ -40,7 +40,7 @@ export default class Faker {
     ];
 
     protected domains = [
-        'voila.fr', 'gmail.com', 'hotmail.fr'
+        'gmail.com', 'yahoo.com', 'hotmail.com'
     ];
 
     protected days = [
@@ -55,34 +55,38 @@ export default class Faker {
         ".", "-", "_", "",
     ];
 
+    protected words = [
+
+    ];
+
     constructor() {
     }
 
-    public firstName(gender: Gender = null): string {
+    public firstname(gender: Gender = null): string {
         switch (gender) {
             case null:
                 return Randomizer.randomize([...this.firstNamesMale, ...this.firstNamesFemale]);
 
             case Gender.male:
-                return this.firstNameMale();
+                return this.firstnameMale();
 
             case Gender.female:
-                return this.firstNameFemale();
+                return this.firstnameFemale();
 
             default:
                 throw new Error("firstName(gender) : If you precise gender, it must be " + Object.keys(Gender).map(g => "Gender." + g));
         }
     }
 
-    public firstNameMale(): string {
+    public firstnameMale(): string {
         return Randomizer.randomize(this.firstNamesMale);
     }
 
-    public firstNameFemale(): string {
+    public firstnameFemale(): string {
         return Randomizer.randomize(this.firstNamesFemale);
     }
 
-    public lastName(): string {
+    public lastname(): string {
         return Randomizer.randomize(this.lastNames);
     }
 
@@ -94,19 +98,19 @@ export default class Faker {
                 switch (Randomizer.randNumber(7)) {
                     case 0:
                         // pau.pau or paupau or pau_pau ...
-                        return `${this.firstName().slice(0, MIN_CHAR)}${Randomizer.randomize(this.emailDelimiters)}${this.firstName().slice(0, MIN_CHAR)}`.toLowerCase();
+                        return `${this.firstname().slice(0, MIN_CHAR)}${Randomizer.randomize(this.emailDelimiters)}${this.firstname().slice(0, MIN_CHAR)}`.toLowerCase();
                     case 1:
                         // pau52_68 or pau5268 or pau52.68 ...
-                        return `${this.firstName().slice(0, MIN_CHAR)}${Randomizer.randNumber(100)}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
+                        return `${this.firstname().slice(0, MIN_CHAR)}${Randomizer.randNumber(100)}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                     case 2:
                         // pauline_52
-                        return `${this.firstName()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
+                        return `${this.firstname()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                     case 3:
-                        return `${this.firstName()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
+                        return `${this.firstname()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                     case 4:
                     case 5:
                     case 6:
-                        return `${this.firstName()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
+                        return `${this.firstname()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                 }
                 break;
 
@@ -143,28 +147,28 @@ export default class Faker {
         switch (Randomizer.randNumber(8)) {
             case 0:
                 // 8 rue Durand
-                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} ${this.lastname()}`;
             case 1:
                 // 8 rue Pierre Durand
-                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} ${this.firstname()} ${this.lastname()}`;
             case 2:
                 // 8 rue de Pierre Durand
-                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} de ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} de ${this.firstname()} ${this.lastname()}`;
             case 3:
                 // 8, rue Durand
-                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} ${this.lastname()}`;
             case 4:
                 // 8, rue Pierre Durand
-                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} ${this.firstname()} ${this.lastname()}`;
             case 5:
                 // 8, rue de Pierre Durand
-                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} de ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} de ${this.firstname()} ${this.lastname()}`;
             case 6:
                 // rue de Pierre Durand
-                return `${Randomizer.randomize(this.streetPrefix)} de ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randomize(this.streetPrefix)} de ${this.firstname()} ${this.lastname()}`;
             case 7:
                 // rue Pierre Durand
-                return `${Randomizer.randomize(this.streetPrefix)} ${this.firstName()} ${this.lastName()}`;
+                return `${Randomizer.randomize(this.streetPrefix)} ${this.firstname()} ${this.lastname()}`;
         }
     }
 

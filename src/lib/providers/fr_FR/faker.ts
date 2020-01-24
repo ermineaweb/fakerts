@@ -109,10 +109,10 @@ export default class FakerImpl extends Faker {
             case 1:
             case 2:
             case 3:
-                return this.lastName() + Randomizer.randomize(this.citySuffix);
+                return this.lastname() + Randomizer.randomize(this.citySuffix);
 
             case 4:
-                return this.lastName() + "-sur-" + this.lastName();
+                return this.lastname() + "-sur-" + this.lastname();
         }
     }
 

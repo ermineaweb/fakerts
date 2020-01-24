@@ -7,18 +7,28 @@ Created to learn TypeScript, Webpack, Jest, Nodemon.
 
 ### Index
 - [Install](#Install)
+- [Providers](#Providers)
 - [Usage](#Usage)
 - [Methods](#Methods)
 
------------------------------------------------------------------
+---------------------------------------------------------
 ### Install
 [Index](#Index)
 
 ``` 
-npm i ermineafaker
+npm install ermineafaker
 ```
 
------------------------------------------------------------------
+---------------------------------------------------------
+### Providers
+[Index](#Index)
+```
+en_US (default)
+fr_FR
+bzh_FR
+```
+
+---------------------------------------------------------
 ### Usage
 [Index](#Index)
 
@@ -35,21 +45,14 @@ faker.firstname(); // John
 faker.lastname(); // Parker
 faker.username(); // joe-56
 faker.email(); // jack_37@hotmail.com
-faker.city(); // Anderson
-faker.street(); // place Clémence Rousset
-faker.job(); // Actor
 
 fakerFr.firstname(); // Pierre
 fakerFr.lastname(); // Durand
 fakerFr.username(); // matthieu45
-faker.email(); // mar5764@voila.fr
-fakerFr.city(); // Chauvin-sur-Delmas
-fakerFr.street(); // place Clémence Rousset
-fakerFr.job(); // Elagueur-grimpeur
+fakerFr.email(); // mar5764@voila.fr
 ```
 
 Example : create five persons
-
 ```javascript
 const faker = Faker.create(Provider.fr_FR);
 const persons = [];
@@ -67,8 +70,7 @@ console.table(persons);
 
 ![screen](/exemple1.png)
 
-
------------------------------------------------------------------
+---------------------------------------------------------
 ### Methods
 [Index](#Index)
 
