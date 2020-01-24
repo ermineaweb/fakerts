@@ -1,21 +1,22 @@
 import Randomizer from "../randomizer";
+import Gender from "./gender";
 
 export default class Faker {
 
     protected firstNamesMale = [
-        'Aaron', 'Abdiel', 'Abdul', 'Abdullah', 'Abe'
+        'John', 'Jack', 'Joe'
     ];
 
     protected firstNamesFemale = [
-        'Aaliyah', 'Abagail', 'Abbey', 'Abbie', 'Abbigail'
+        'Suzan', 'Jane', 'Mary'
     ];
 
     protected lastNames = [
-        'Abbott', 'Abernathy', 'Abshire', 'Adams', 'Altenwerth', 'Anderson'
+        'Parker', 'Adams', 'Anderson'
     ];
 
     protected countries = [
-        'Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra'
+        'France', 'Spain', 'Italy'
     ];
 
     protected states = [
@@ -26,15 +27,16 @@ export default class Faker {
         'rue', 'rue', 'chemin', 'avenue', 'boulevard', 'place', 'impasse'
     ];
 
+    protected streetSuffix = [
+        'Alley', 'Avenue', 'Branch', 'Bridge', 'Brook', 'Brooks', 'Burg', 'Burgs', 'Bypass', 'Camp', 'Canyon', 'Cape', 'Causeway', 'Center', 'Centers', 'Circle', 'Circles', 'Cliff', 'Cliffs', 'Club', 'Common', 'Corner', 'Corners', 'Course', 'Court', 'Courts', 'Cove', 'Coves', 'Creek', 'Crescent', 'Crest', 'Crossing', 'Crossroad', 'Curve', 'Dale', 'Dam', 'Divide', 'Drive', 'Drive', 'Drives', 'Estate', 'Estates', 'Expressway', 'Extension', 'Extensions', 'Fall', 'Falls', 'Ferry', 'Field', 'Fields', 'Flat', 'Flats', 'Ford', 'Fords', 'Forest', 'Forge', 'Forges', 'Fork', 'Forks', 'Fort', 'Freeway', 'Garden', 'Gardens', 'Gateway', 'Glen', 'Glens', 'Green', 'Greens', 'Grove', 'Groves', 'Harbor', 'Harbors', 'Haven', 'Heights', 'Highway', 'Hill', 'Hills', 'Hollow', 'Inlet', 'Inlet', 'Island', 'Island', 'Islands', 'Islands', 'Isle', 'Isle', 'Junction', 'Junctions', 'Key', 'Keys', 'Knoll', 'Knolls', 'Lake', 'Lakes', 'Land', 'Landing', 'Lane', 'Light', 'Lights', 'Loaf', 'Lock', 'Locks', 'Locks', 'Lodge', 'Lodge', 'Loop', 'Mall', 'Manor', 'Manors', 'Meadow', 'Meadows', 'Mews', 'Mill', 'Mills', 'Mission', 'Mission', 'Motorway', 'Mount', 'Mountain', 'Mountain', 'Mountains', 'Mountains', 'Neck', 'Orchard', 'Oval', 'Overpass', 'Park', 'Parks', 'Parkway', 'Parkways', 'Pass', 'Passage', 'Path', 'Pike', 'Pine', 'Pines', 'Place', 'Plain', 'Plains', 'Plains', 'Plaza', 'Plaza', 'Point', 'Points', 'Port', 'Port', 'Ports', 'Ports', 'Prairie', 'Prairie', 'Radial', 'Ramp', 'Ranch', 'Rapid', 'Rapids', 'Rest', 'Ridge', 'Ridges', 'River', 'Road', 'Road', 'Roads', 'Roads', 'Route', 'Row', 'Rue', 'Run', 'Shoal', 'Shoals', 'Shore', 'Shores', 'Skyway', 'Spring', 'Springs', 'Springs', 'Spur', 'Spurs', 'Square', 'Square', 'Squares', 'Squares', 'Station', 'Station', 'Stravenue', 'Stravenue', 'Stream', 'Stream', 'Street', 'Street', 'Streets', 'Summit', 'Summit', 'Terrace', 'Throughway', 'Trace', 'Track', 'Trafficway', 'Trail', 'Trail', 'Tunnel', 'Tunnel', 'Turnpike', 'Turnpike', 'Underpass', 'Union', 'Unions', 'Valley', 'Valleys', 'Via', 'Viaduct', 'View', 'Views', 'Village', 'Village', 'Villages', 'Ville', 'Vista', 'Vista', 'Walk', 'Walks', 'Wall', 'Way', 'Ways', 'Well', 'Wells'
+    ];
+
     protected jobs = [
         'Able Seamen', 'Account Manager', 'Accountant', 'Actor'
     ];
 
     protected domains = [
-        'voila.fr', 'gmail.com', 'hotmail.fr', 'yahoo.fr', 'laposte.net', 'free.fr',
-        'sfr.fr', 'orange.fr', 'bouygtel.fr', 'club-internet.fr', 'dbmail.com',
-        'live.com', 'ifrance.com', 'noos.fr', 'tele2.fr', 'tiscali.fr', 'wanadoo.fr',
-        'gmail.com', 'yahoo.com', 'hotmail.com', 'gmail.com', 'gmail.com', 'gmail.com'
+        'voila.fr', 'gmail.com', 'hotmail.fr'
     ];
 
     protected days = [
@@ -46,24 +48,25 @@ export default class Faker {
     ];
 
     protected emailDelimiters = [
-      ".", "-", "_", "",
+        ".", "-", "_", "",
     ];
 
     constructor() {
     }
 
-    public firstName(gender: string = ""): string {
-        switch (gender.toLowerCase()) {
-            case "male":
-            case "m":
+    public firstName(gender: Gender = null): string {
+        switch (gender) {
+            case null:
+                return Randomizer.randomize([...this.firstNamesMale, ...this.firstNamesFemale]);
+
+            case Gender.male:
                 return this.firstNameMale();
 
-            case "female":
-            case "f":
+            case Gender.female:
                 return this.firstNameFemale();
 
             default:
-                return Randomizer.randomize([...this.firstNamesMale, ...this.firstNamesFemale]);
+                throw new Error("firstName(gender) : If you precise gender, it must be " + Object.keys(Gender).map(g => "Gender." + g));
         }
     }
 
@@ -79,22 +82,12 @@ export default class Faker {
         return Randomizer.randomize(this.lastNames);
     }
 
-    public username(gender: string = ""): string {
-        const MIN_CHAR = Randomizer.randNumber(5,2);
+    public username(gender: Gender = null): string {
+        const MIN_CHAR = Randomizer.randNumber(5, 2);
 
-        switch (gender.toLowerCase()) {
-            case "m":
-            case "h":
-            case "male":
-                return this.usernameMale();
-
-            case "f":
-            case "femme":
-            case "female":
-                return this.usernameFemale();
-
-            default:
-                switch (Randomizer.randNumber(4)) {
+        switch (gender) {
+            case null:
+                switch (Randomizer.randNumber(7)) {
                     case 0:
                         // pau.pau or paupau or pau_pau ...
                         return `${this.firstName().slice(0, MIN_CHAR)}${Randomizer.randomize(this.emailDelimiters)}${this.firstName().slice(0, MIN_CHAR)}`.toLowerCase();
@@ -107,8 +100,20 @@ export default class Faker {
                     case 3:
                         return `${this.firstName()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                     case 4:
+                    case 5:
+                    case 6:
                         return `${this.firstName()}${Randomizer.randomize(this.emailDelimiters)}${Randomizer.randNumber(100)}`.toLowerCase();
                 }
+                break;
+
+            case Gender.male:
+                return this.usernameMale();
+
+            case Gender.female:
+                return this.usernameFemale();
+
+            default:
+                throw new Error("username(gender) : If you precise gender, it must be " + Object.keys(Gender).map(g => "Gender." + g));
         }
     }
 
@@ -131,7 +136,7 @@ export default class Faker {
     }
 
     public street(): string {
-        switch (Randomizer.randNumber(5)) {
+        switch (Randomizer.randNumber(8)) {
             case 0:
                 // 8 rue Durand
                 return `${Randomizer.randNumber(100, 1)} ${Randomizer.randomize(this.streetPrefix)} ${this.lastName()}`;
@@ -150,11 +155,22 @@ export default class Faker {
             case 5:
                 // 8, rue de Pierre Durand
                 return `${Randomizer.randNumber(100, 1)}, ${Randomizer.randomize(this.streetPrefix)} de ${this.firstName()} ${this.lastName()}`;
+            case 6:
+                // rue de Pierre Durand
+                return `${Randomizer.randomize(this.streetPrefix)} de ${this.firstName()} ${this.lastName()}`;
+            case 7:
+                // rue Pierre Durand
+                return `${Randomizer.randomize(this.streetPrefix)} ${this.firstName()} ${this.lastName()}`;
         }
     }
 
     public zipcode(): string {
-        return "10500";
+        const first = Randomizer.randNumber(9);
+        const second = Randomizer.randNumber(9);
+        const thirst = Randomizer.randNumber(9);
+        const fourth = Randomizer.randNumber(9);
+        const fifth = Randomizer.randNumber(9);
+        return `${first}${second}${thirst}${fourth}${fifth}`;
     }
 
     public job(): string {
@@ -162,7 +178,8 @@ export default class Faker {
     }
 
     public email(): string {
-        return this.username() + "@" + Randomizer.randomize(this.domains);
+        // normalize to remove accents
+        return this.username().normalize("NFD").replace(/[\u0300-\u036f]/g, "") + "@" + Randomizer.randomize(this.domains);
     }
 
     public day(): string {

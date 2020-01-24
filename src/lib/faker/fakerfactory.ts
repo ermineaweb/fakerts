@@ -1,4 +1,4 @@
-import locales from "./locales";
+import Provider from "./providers";
 import Faker from "../providers";
 import Faker_fr_FR from "../providers/fr_FR";
 import Faker_bzh_FR from "../providers/bzh_FR";
@@ -11,19 +11,23 @@ export default class FakerFactory {
     private constructor() {
     }
 
-    static create(locale: string = "") {
+    static create(provider: Provider = null) {
 
-        switch (locale) {
-            case locales.fr_FR:
+        switch (provider) {
+            case null:
+                this.instance = new Faker();
+                break;
+
+            case Provider.fr_FR:
                 this.instance = new Faker_fr_FR();
                 break;
 
-            case locales.bzh_FR:
+            case Provider.bzh_FR:
                 this.instance = new Faker_bzh_FR();
                 break;
 
             default:
-                this.instance = new Faker();
+                Error("invalid provider : " + Object.keys(Provider).map(p => "Provider." + p));
                 break;
         }
 

@@ -3,7 +3,7 @@ export default class Randomizer {
     /**
      * randNumber(max, min)
      *
-     * return a random number between min and max.
+     * return a random number between min (include) and max (exclude).
      * min = 0 if not assigned.
      *
      * @param max
