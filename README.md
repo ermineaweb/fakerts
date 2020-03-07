@@ -16,7 +16,7 @@ Created to learn TypeScript, Webpack, Jest, Nodemon.
 [Index](#Index)
 
 ``` 
-npm install ermineafaker
+// not allowed at this time
 ```
 
 ---------------------------------------------------------
